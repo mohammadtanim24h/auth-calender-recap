@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+    
     return (
         <div className="navbar bg-slate-700">
             <div className="navbar-start">
