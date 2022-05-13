@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
-const Calender = ({date, setDate}) => {
+const Calender = ({ date, setDate }) => {
     return (
         <div className="h-[60vh] flex justify-center items-center">
             <div className="bg-slate-700 w-max h-min p-6 rounded-lg">
@@ -11,7 +11,11 @@ const Calender = ({date, setDate}) => {
                     selected={date}
                     onSelect={setDate}
                     modifiersStyles={{
-                        selected: { color: "white", borderColor: "cornflowerblue", backgroundColor: "cornflowerblue" },
+                        selected: {
+                            color: "white",
+                            borderColor: "cornflowerblue",
+                            backgroundColor: "cornflowerblue",
+                        },
                     }}
                 />
             </div>
