@@ -1,8 +1,11 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
-    
+    const [user, loading, error] = useAuthState(auth);
     return (
         <div className="navbar bg-slate-700">
             <div className="navbar-start">
@@ -28,24 +31,41 @@ const Navbar = () => {
                         className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-slate-700 rounded-box w-52 text-neutral"
                     >
                         <li>
-                            <Link to='/'>Home</Link>
+                            <Link to="/">Home</Link>
                         </li>
                         <li>
-                            <Link to='/about'>About</Link>
+                            <Link to="/about">About</Link>
                         </li>
                         <li>
-                            <Link to='/date'>Date</Link>
+                            <Link to="/date">Date</Link>
                         </li>
                         <li>
-                            <Link to='/login'>Login</Link>
+                            <Link to="/login">Login</Link>
                         </li>
                     </ul>
                 </div>
             </div>
             <div className="navbar-center">
-                <Link to="/" className="btn btn-ghost normal-case text-xl text-neutral">Keep Track</Link>
+                <Link
+                    to="/"
+                    className="btn btn-ghost normal-case text-xl text-neutral"
+                >
+                    Keep Track
+                </Link>
+
+                {user && <span className="text-neutral">{user.displayName}</span>}
             </div>
             <div className="navbar-end">
+                {user ? (
+                    <button
+                        className="btn btn-outline text-neutral ml-3"
+                        onClick={() => signOut(auth)}
+                    >
+                        Sign out
+                    </button>
+                ) : (
+                    ""
+                )}
                 <button className="btn btn-ghost btn-circle">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
